@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5hno2je4oi53"]
+
+[ext_resource type="Texture2D" uid="uid://db7nbrj63cuis" path="res://assets/images/upper_leg.png" id="1_0cxes"]
+[ext_resource type="Script" uid="uid://l6djbaa8ohmu" path="res://assets/scripts/leg.gd" id="1_eupdt"]
+[ext_resource type="Texture2D" uid="uid://b3g3eoebfibfj" path="res://assets/images/middle_leg.png" id="2_eupdt"]
+[ext_resource type="Texture2D" uid="uid://b87rq67wh6bk8" path="res://assets/images/lower_leg.png" id="3_bypjn"]
+
+[node name="Leg" type="Node2D" node_paths=PackedStringArray("joint1", "upper_leg_sprite", "joint2", "mid_leg_sprite", "hand", "hand_sprite")]
+script = ExtResource("1_eupdt")
+joint1 = NodePath("Joint1")
+upper_leg_sprite = NodePath("Sprite2D")
+joint2 = NodePath("Joint1/Joint2")
+mid_leg_sprite = NodePath("Joint1/Sprite2D")
+hand = NodePath("Joint1/Joint2/Hand")
+hand_sprite = NodePath("Joint1/Joint2/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 0)
+rotation = -1.5708
+texture = ExtResource("1_0cxes")
+
+[node name="Joint1" type="Node2D" parent="."]
+position = Vector2(56, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Joint1"]
+position = Vector2(24, 0)
+rotation = -1.5708
+texture = ExtResource("2_eupdt")
+
+[node name="Joint2" type="Node2D" parent="Joint1"]
+position = Vector2(48, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Joint1/Joint2"]
+position = Vector2(29, 0)
+rotation = -1.5708
+texture = ExtResource("3_bypjn")
+
+[node name="Hand" type="Node2D" parent="Joint1/Joint2"]
+position = Vector2(63, 0)
+
+[connection signal="ready" from="." to="." method="_on_ready"]

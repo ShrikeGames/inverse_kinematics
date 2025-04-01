@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmutumduba2wu"]
+
+[ext_resource type="Script" uid="uid://diah6wkm106kh" path="res://assets/scripts/spider.gd" id="1_fhyjo"]
+[ext_resource type="Texture2D" uid="uid://c0iw61ixtp8p3" path="res://assets/images/body.png" id="1_shvcm"]
+[ext_resource type="PackedScene" uid="uid://b5hno2je4oi53" path="res://assets/scenes/leg.tscn" id="2_8sdsk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhyjo"]
+radius = 29.1548
+
+[node name="Spider" type="CharacterBody2D" node_paths=PackedStringArray("front_check", "low_mid_check", "high_mid_check", "back_check", "forward_check", "front_legs_node", "back_legs_node")]
+collision_layer = 2
+script = ExtResource("1_fhyjo")
+front_check = NodePath("FrontCheck")
+low_mid_check = NodePath("LowMidCheck")
+high_mid_check = NodePath("HighMidCheck")
+back_check = NodePath("BackCheck")
+forward_check = NodePath("ForwardCheck")
+front_legs_node = NodePath("FrontLegs")
+back_legs_node = NodePath("BackLegs")
+
+[node name="FrontLegs" type="Node2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="Leg" parent="FrontLegs" instance=ExtResource("2_8sdsk")]
+rotation = 0.00015533
+
+[node name="Leg2" parent="FrontLegs" instance=ExtResource("2_8sdsk")]
+rotation = 0.00015533
+
+[node name="Leg3" parent="FrontLegs" instance=ExtResource("2_8sdsk")]
+rotation = 0.00015533
+
+[node name="BackLegs" type="Node2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="Leg" parent="BackLegs" instance=ExtResource("2_8sdsk")]
+rotation = 3.15055
+flipped = false
+
+[node name="Leg2" parent="BackLegs" instance=ExtResource("2_8sdsk")]
+rotation = 3.15055
+flipped = false
+
+[node name="Leg3" parent="BackLegs" instance=ExtResource("2_8sdsk")]
+rotation = 3.15055
+flipped = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_shvcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fhyjo")
+
+[node name="LowMidCheck" type="RayCast2D" parent="."]
+rotation = -0.523599
+
+[node name="HighMidCheck" type="RayCast2D" parent="."]
+rotation = -0.523599
+
+[node name="FrontCheck" type="RayCast2D" parent="."]
+position = Vector2(84, 0)
+target_position = Vector2(0, 500)
+
+[node name="BackCheck" type="RayCast2D" parent="."]
+position = Vector2(-84, 0)
+target_position = Vector2(0, 500)
+
+[node name="ForwardCheck" type="RayCast2D" parent="."]
+target_position = Vector2(75, 0)
+
+[connection signal="ready" from="." to="." method="_on_ready"]

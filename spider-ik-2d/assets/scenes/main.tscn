@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca5j114dyk0av"]
+
+[ext_resource type="PackedScene" uid="uid://bmutumduba2wu" path="res://assets/scenes/spider.tscn" id="1_mr7gh"]
+[ext_resource type="PackedScene" uid="uid://cfk13ecgeogfv" path="res://assets/scenes/ground.tscn" id="2_kpi06"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Spider" parent="." instance=ExtResource("1_mr7gh")]
+position = Vector2(117, 851)
+
+[node name="Ground" parent="." instance=ExtResource("2_kpi06")]
+position = Vector2(312, 960)
+
+[node name="Ground2" parent="." instance=ExtResource("2_kpi06")]
+position = Vector2(480, 949)
+rotation = -0.419859
+
+[node name="Ground3" parent="." instance=ExtResource("2_kpi06")]
+position = Vector2(1079, 822)
+
+[node name="Ground4" parent="." instance=ExtResource("2_kpi06")]
+position = Vector2(1156, 791)
+rotation = 0.000312546
+
+[node name="Ground5" parent="." instance=ExtResource("2_kpi06")]
+position = Vector2(1273, 727)
+rotation = 0.000312546
+
+[node name="Ground6" parent="." instance=ExtResource("2_kpi06")]
+position = Vector2(1968, 755)

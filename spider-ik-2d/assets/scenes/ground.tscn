@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfk13ecgeogfv"]
+
+[ext_resource type="Texture2D" uid="uid://ecijo0k6kocc" path="res://assets/images/ground.png" id="1_dk3sc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dk3sc"]
+size = Vector2(640, 64)
+
+[node name="Ground" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
+lock_rotation = true
+freeze = true
+custom_integrator = true
+contact_monitor = true
+max_contacts_reported = 8
+
+[node name="Ground" type="Sprite2D" parent="."]
+texture = ExtResource("1_dk3sc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dk3sc")
