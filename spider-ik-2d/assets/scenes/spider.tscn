@@ -7,14 +7,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhyjo"]
 radius = 29.1548
 
-[node name="Spider" type="CharacterBody2D" node_paths=PackedStringArray("front_check", "low_mid_check", "high_mid_check", "back_check", "forward_check", "front_legs_node", "back_legs_node")]
-collision_layer = 2
+[node name="Spider" type="CharacterBody2D" node_paths=PackedStringArray("front_check", "back_check", "ground_check", "front_legs_node", "back_legs_node")]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_fhyjo")
 front_check = NodePath("FrontCheck")
-low_mid_check = NodePath("LowMidCheck")
-high_mid_check = NodePath("HighMidCheck")
 back_check = NodePath("BackCheck")
-forward_check = NodePath("ForwardCheck")
+ground_check = NodePath("GroundCheck")
 front_legs_node = NodePath("FrontLegs")
 back_legs_node = NodePath("BackLegs")
 
@@ -51,12 +50,6 @@ texture = ExtResource("1_shvcm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fhyjo")
 
-[node name="LowMidCheck" type="RayCast2D" parent="."]
-rotation = -0.523599
-
-[node name="HighMidCheck" type="RayCast2D" parent="."]
-rotation = -0.523599
-
 [node name="FrontCheck" type="RayCast2D" parent="."]
 position = Vector2(84, 0)
 target_position = Vector2(0, 500)
@@ -65,7 +58,6 @@ target_position = Vector2(0, 500)
 position = Vector2(-84, 0)
 target_position = Vector2(0, 500)
 
-[node name="ForwardCheck" type="RayCast2D" parent="."]
-target_position = Vector2(75, 0)
+[node name="GroundCheck" type="RayCast2D" parent="."]
 
 [connection signal="ready" from="." to="." method="_on_ready"]
