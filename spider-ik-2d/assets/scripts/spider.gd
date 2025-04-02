@@ -11,12 +11,12 @@ var front_legs: Array
 var back_legs: Array
 
 @export var move_to_mouse: bool = true
-@export var move_speed: float = 60
+@export var move_speed: float = 80
 @export var x_speed: float = 60
 @export var y_speed: float = 120
 
 
-@export var step_rate: float = 0.15
+@export var step_rate: float = 0.1
 @export var ground_check_distance:float = 78
 @export var front_check_distance: float = 128
 @export var back_check_distance: float = -8
@@ -92,11 +92,11 @@ func step():
 	
 	if use_front:
 		leg = front_legs[current_front_leg]
-		current_front_leg = wrapf(current_front_leg+1, 0, front_legs.size())
+		current_front_leg = wrapi(current_front_leg+1, 0, front_legs.size())
 		sensor = front_check
 	else:
 		leg = back_legs[current_back_leg]
-		current_back_leg = wrapf(current_back_leg+1, 0, back_legs.size())
+		current_back_leg = wrapi(current_back_leg+1, 0, back_legs.size())
 		sensor = back_check
 		
 	use_front = not use_front
