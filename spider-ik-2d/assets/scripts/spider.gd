@@ -17,11 +17,12 @@ var back_legs: Array
 @export var x_speed: float = 60
 @export var y_speed: float = 120
 
-@export var step_rate: float = 0.2
-@export var high_check_distance: float = 86
+@export var step_rate: float = 0.15
+@export var high_check_distance: float = 90
 @export var low_check_distance: float = 24
-@export var front_check_distance: float = 128
+@export var front_check_distance: float = 100
 @export var back_check_distance: float = -8
+@export var forward_check_distance: float = 100
 
 var time_since_last_step: float = 0
 var current_front_leg: int = 0
@@ -35,7 +36,7 @@ func _on_ready() -> void:
 	low_mid_check.target_position.y = low_check_distance
 	front_check.position.x = front_check_distance
 	back_check.position.x = back_check_distance
-	
+	forward_check.position.x = forward_check_distance
 	forward_check.position.y = high_check_distance
 	
 	front_check.force_raycast_update()
@@ -43,7 +44,7 @@ func _on_ready() -> void:
 	forward_check.force_raycast_update()
 	
 	# iterate over it multiple times so it can converge
-	for i in range(32):
+	for i in range(6):
 		step()
 
 func _physics_process(delta: float) -> void:
@@ -55,9 +56,11 @@ func _physics_process(delta: float) -> void:
 	if move_vec.x >= 0:
 		front_check.position.x = front_check_distance
 		back_check.position.x = back_check_distance
+		forward_check.position.x = forward_check_distance
 	else:
 		front_check.position.x = - back_check_distance
 		back_check.position.x = - front_check_distance
+		forward_check.position.x = -forward_check_distance
 	
 	if high_mid_check.is_colliding() or forward_check.is_colliding():
 		move_vec.y = - y_speed
@@ -94,6 +97,7 @@ func step():
 		sensor = back_check
 		
 	use_front = not use_front
-	var target = sensor.get_collision_point()
+	var target_pos:Vector2 = sensor.get_collision_point()
 	# leg assumed to be a Leg object
-	leg.step(target)
+	leg.step(target_pos)
+	
